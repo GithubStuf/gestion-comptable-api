@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es2016", // ECMAScript version to compile to
+    "module": "commonjs", // Module system to use
+    "rootDir": "./src", // Root directory of your TypeScript source files
+    "outDir": "./dist", // Output directory for compiled JavaScript files
+    "esModuleInterop": true, // Enable compatibility with ES modules
+    "forceConsistentCasingInFileNames": true, // Ensure consistent file naming
+    "strict": true, // Enable all strict type-checking options
+    "skipLibCheck": true, // Skip type-checking of declaration files
+    "moduleResolution": "node", // Use Node.js-style module resolution
+    "resolveJsonModule": true, // Allow importing JSON files
+    "sourceMap": true, // Generate source maps for debugging
+    "removeComments": true, // Remove comments from the output
+    "noImplicitAny": true, // Raise errors on expressions with implied `any` type
+    "strictNullChecks": true, // Enable strict null checks
+    "strictFunctionTypes": true, // Enable strict function type checking
+    "strictPropertyInitialization": true, // Ensure class properties are initialized
+    "noUnusedLocals": true, // Report errors on unused local variables
+    "noUnusedParameters": true // Report errors on unused function parameters
+  },
+  "include": ["src/**/*"], // Include all files in the `src` directory
+  "exclude": ["node_modules", "dist"] // Exclude `node_modules` and `dist` directories
+}

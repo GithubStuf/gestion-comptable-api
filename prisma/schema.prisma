@@ -1,0 +1,126 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Client {
+  id          String    @id @default(uuid())
+  nom_client  String
+  adresse     String?
+  rc          String?
+  if          String?
+  nif         String?
+  nis         String?
+  code_tiers  String?
+  marches     Marche[]
+  devis       Devis[]
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+}
+
+model Marche {
+  id          String    @id @default(uuid())
+  nom_marche  String
+  type_marche String
+  id_client   String
+  statut      String
+  client      Client    @relation(fields: [id_client], references: [id])
+  devis       Devis[]
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+}
+
+model Devis {
+  id              String       @id @default(uuid())
+  num_devis       String
+  date_devis      DateTime
+  date_expiration DateTime
+  id_client       String
+  id_marche       String
+  montant_ht      Float
+  montant_tva     Float
+  montant_ttc     Float
+  statut_devis    String
+  client          Client       @relation(fields: [id_client], references: [id])
+  marche          Marche       @relation(fields: [id_marche], references: [id])
+  situations      Situation[]
+  created_at      DateTime     @default(now())
+  updated_at      DateTime     @updatedAt
+}
+
+model Situation {
+  id                     String      @id @default(uuid())
+  id_devis               String
+  periode                String
+  pourcentage_avancement Float
+  montant_ht             Float
+  montant_tva            Float
+  montant_ttc            Float
+  statut                 String
+  devis                  Devis       @relation(fields: [id_devis], references: [id])
+  factures               Facture[]
+  created_at             DateTime    @default(now())
+  updated_at             DateTime    @updatedAt
+}
+
+model Facture {
+  id             String      @id @default(uuid())
+  id_situation   String
+  date_facture   DateTime
+  montant_ht     Float
+  montant_tva    Float
+  montant_ttc    Float
+  statut_facture String
+  situation      Situation   @relation(fields: [id_situation], references: [id])
+  paiements      Paiement[]
+  created_at     DateTime    @default(now())
+  updated_at     DateTime    @updatedAt
+}
+
+model Paiement {
+  id               String    @id @default(uuid())
+  id_facture       String
+  montant_paiement Float
+  date_paiement    DateTime
+  mode_paiement    String
+  statut_paiement  String
+  facture          Facture   @relation(fields: [id_facture], references: [id])
+  created_at       DateTime  @default(now())
+  updated_at       DateTime  @updatedAt
+}
+
+model Produit {
+  id          String    @id @default(uuid())
+  nom_produit String
+  categorie   String?
+  stocks      Stock[]
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+}
+
+model Stock {
+  id             String       @id @default(uuid())
+  id_fournisseur String
+  id_produit     String
+  quantite       Int
+  emplacement    String?
+  seuil_min      Int?
+  fournisseur    Fournisseur  @relation(fields: [id_fournisseur], references: [id])
+  produit        Produit      @relation(fields: [id_produit], references: [id])
+  created_at     DateTime     @default(now())
+  updated_at     DateTime     @updatedAt
+}
+
+model Fournisseur {
+  id              String    @id @default(uuid())
+  nom_fournisseur String
+  adresse         String?
+  telephone       String?
+  stocks          Stock[]
+  created_at      DateTime  @default(now())
+  updated_at      DateTime  @updatedAt
+}

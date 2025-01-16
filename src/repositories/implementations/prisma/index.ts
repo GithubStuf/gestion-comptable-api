@@ -1,0 +1,9 @@
+export { PrismaClientRepository } from './PrismaClientRepository';
+export { PrismaMarcheRepository } from './PrismaMarcheRepository';
+export { PrismaDevisRepository } from './PrismaDevisRepository';
+export { PrismaSituationRepository } from './PrismaSituationRepository';
+export { PrismaFactureRepository } from './PrismaFactureRepository';
+export { PrismaPaiementRepository } from './PrismaPaiementRepository';
+export { PrismaProduitRepository } from './PrismaProduitRepository';
+export { PrismaStockRepository } from './PrismaStockRepository';
+export { PrismaFournisseurRepository } from './PrismaFournisseurRepository';

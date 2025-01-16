@@ -1,0 +1,9 @@
+export { InMemoryClientRepository } from './InMemoryClientRepository';
+export { InMemoryMarcheRepository } from './InMemoryMarcheRepository';
+export { InMemoryDevisRepository } from './InMemoryDevisRepository';
+export { InMemorySituationRepository } from './InMemorySituationRepository';
+export { InMemoryFactureRepository } from './InMemoryFactureRepository';
+export { InMemoryPaiementRepository } from './InMemoryPaiementRepository';
+export { InMemoryProduitRepository } from './InMemoryProduitRepository';
+export { InMemoryStockRepository } from './InMemoryStockRepository';
+export { InMemoryFournisseurRepository } from './InMemoryFournisseurRepository'
